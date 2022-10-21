@@ -54,15 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
 
-      Column(
+      body: Column(
         children: [
-          Padding(padding: EdgeInsets.only(top: 24)),
-          Container(
-            color: Colors.black26,
-            height: 50,
-          ),
+
           screens[_page],
           Container(
             decoration: BoxDecoration(

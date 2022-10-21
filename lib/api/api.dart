@@ -45,6 +45,27 @@ class GetShopData {
     return [{"" : "s"}];
   }
 
+  Future<List<CategoryFilter>> getCategory() async {
+    var response = await http.get(Uri.parse("$baseUrl/api/products/categories?page[size]=30&page[number]=1&filter[status]=gte:1"));
+    var json = jsonDecode(response.body);
+    // print(json['data']['product_categories']);
+
+    List<CategoryFilter> markets = [];
+    for (var product in json['data']['product_categories']) {
+        // print(product);
+        if (product['cover'].length == 0){
+          break;
+        }
+        product['cover'] = product['cover'][0]['url'];
+        // for (var cover in product['cover'])
+        //   product['cover'] = cover['url'];
+          var market = CategoryFilter.fromJson((product));
+          markets.add(market);
+    }
+
+    return markets;
+  }
+
 
   Future checkUser(String phone) async {
     var response = await http.post(Uri.parse("$baseUrl/api/login"), body: {
@@ -108,4 +129,31 @@ class ProductFilter {
   String toString() {
     return "{name: $name}";
   }
+}
+class CategoryFilter {
+  final int id;
+  final String name;
+  final List products;
+  final String cover;
+
+
+  CategoryFilter(this.id,this.name,this.products,this.cover);
+
+  factory CategoryFilter.fromJson(Map<String,dynamic> json){
+    return CategoryFilter(
+        json['id'],
+        json['name'],
+        json['products'],
+        json['cover'],
+    );
+  }
+  // Map<String, String> toMap() {
+  //   return {
+  //     "name": name
+  //   };
+  // }
+  //
+  // String toString() {
+  //   return "{name: $name}";
+  // }
 }

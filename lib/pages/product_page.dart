@@ -73,8 +73,11 @@ class ProductPageState extends State<ProductPage> {
                   width: 350,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
+                    boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+
                     color: Colors.blue,
                   ),
+
                   child: ClipRRect(
                        borderRadius: BorderRadius.circular(16),
                       child:Image.network(data.cover,fit: BoxFit.fill)
@@ -84,12 +87,22 @@ class ProductPageState extends State<ProductPage> {
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(8,8,8,8),
-
             height: height/2,
             width: 500,
-            child: Text(
-              data.name
-            ),
+            padding: EdgeInsets.all(8),
+            alignment: Alignment.topRight,
+            child:
+              Column(
+                children: [
+                  Text(
+                    data.description,
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
+
+                  ),
+                ],
+              )
             // color: Colors.white,
           )
         ],
