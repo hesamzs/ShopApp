@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shopapp/api/api.dart';
-import 'package:shimmer/shimmer.dart';
 
 
 class CategoryPage extends StatefulWidget {
@@ -26,7 +25,10 @@ class CategoryPageState extends State<CategoryPage> {
         return;
       }setState(() {
         data = value;
-        Timer(Duration (milliseconds : 500), () {setState(() {
+        Timer(Duration (milliseconds : 500), () {
+          if (!mounted) {
+            return;
+          }setState(() {
           _isLoading = false;
         });});
       });
@@ -56,6 +58,7 @@ class CategoryPageState extends State<CategoryPage> {
             ) :
             Expanded(
                 child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemCount: data.length,
                     itemBuilder: (context,index) {
                       return Container(

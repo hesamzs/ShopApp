@@ -46,7 +46,6 @@ dev_dependencies:
   sqflite: 2.0.3
   curved_navigation_bar: ^1.0.3
   google_nav_bar: ^5.0.6
-  shimmer: ^2.0.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

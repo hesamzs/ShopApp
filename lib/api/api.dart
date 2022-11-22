@@ -8,7 +8,7 @@ class GetShopData {
   var token = "";
 
   Future<List<ProductFilter>> getProducts() async {
-    var response = await http.get(Uri.parse("$baseUrl/api/products?page[number]=1&page[size]=10"));
+    var response = await http.get(Uri.parse("$baseUrl/api/products?page[number]=1&page[size]=31"));
     var json = jsonDecode(response.body);
     List<ProductFilter> markets = [];
     for (var product in json['data']['products']) {

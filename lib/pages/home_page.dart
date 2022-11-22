@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shopapp/api/api.dart';
-import 'package:shopapp/database/favorites_sql.dart';
 
 class CardPage extends StatefulWidget {
   @override
@@ -15,27 +14,25 @@ class CardPageState extends State<CardPage> {
 
   bool _isLoading = true;
 
-  List loading = [
-    "1",
-    "1",
-    "1",
-    "1",
-    "1",
-    "1",
-    "1",
-  ];
+  List loading = ["1", "1", "1", "1", "1", "1", "1"];
   List<ProductFilter> data = [];
+  List<ProductFilter> all_data = [];
 
   void initState() {
     super.initState();
     var ShopApiData = GetShopData();
 
     ShopApiData.getProducts().then((value) {
+      for (var products in value)
+        all_data.add(products);
       if (!mounted) {
         return;
       }setState(() {
         data = value;
-        Timer(Duration (milliseconds : 500), () {setState(() {
+        Timer(Duration (milliseconds : 500), () {
+          if (!mounted) {
+            return;
+          } setState(() {
           _isLoading = false;
         });
         });
@@ -55,7 +52,59 @@ class CardPageState extends State<CardPage> {
             Padding(padding: EdgeInsets.only(top: 24)),
             Container(
               color: Colors.black26,
-              height: 50,
+              height: 55,
+                child: Container(
+                  margin: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.grey[700],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        child: Icon(
+                          Icons.search
+                        ),
+                      ),
+                      Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius: BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8))
+                            ),
+                            child: TextField(
+                              onChanged: (text) {
+                                var list2 = data.where((map)=>map.name.toLowerCase().contains(text)).toList();
+                                if (text.length > 0) {
+                                  setState(() {
+                                    data = list2;
+                                  });
+                                }else{
+                                  setState(() {
+                                    data = all_data;
+                                  });
+                                }
+
+                              },
+                              decoration: InputDecoration(
+                                hintText: 'Search Product...',
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.transparent),
+                                ),
+                                hintStyle: TextStyle(fontSize: 16.0, color: Colors.grey),
+                              ),
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 18
+                              ),
+                            ),
+                          )
+                      )
+                    ],
+                  ),
+                ),
             ),
             _isLoading ?Expanded(
               child:
@@ -63,6 +112,7 @@ class CardPageState extends State<CardPage> {
                 childAspectRatio: (itemWidth / itemHeight) + 0.1,
                 primary: false,
                 padding: const EdgeInsets.all(10),
+                physics: BouncingScrollPhysics(),
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
                 crossAxisCount: 2,
@@ -157,7 +207,7 @@ class CardPageState extends State<CardPage> {
                                                   ],
                                                 )
                                             ),
-                                            Padding(padding: EdgeInsets.only(left: 8)),
+                                            const Padding(padding: EdgeInsets.only(left: 8)),
                                             Container(
                                               height: 40,
                                               width: 40,
@@ -188,6 +238,7 @@ class CardPageState extends State<CardPage> {
                 childAspectRatio: (itemWidth / itemHeight) + 0.1,
                 primary: false,
                 padding: const EdgeInsets.all(10),
+                physics: const BouncingScrollPhysics(),
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
                 crossAxisCount: 2,
@@ -196,7 +247,7 @@ class CardPageState extends State<CardPage> {
                     Container(
                         decoration:
                         BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderRadius: const BorderRadius.all(Radius.circular(8)),
                           color: Colors.black.withOpacity(0.359),
                           boxShadow: [
                             BoxShadow(
@@ -218,31 +269,27 @@ class CardPageState extends State<CardPage> {
                             children: [
                               Padding(padding: EdgeInsets.only(top: 8)),
                               Container(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child:  Image.network(i.cover ,
-                                    fit: BoxFit.fill,
-
-                                  ),
-
-                                ),
                                 decoration:
-                                BoxDecoration(
+                                const BoxDecoration(
                                   boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
                                 ),
-
                                 height: 150,
                                 width: 170,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.network(i.cover ,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
                               ),
                               Row(
                                 children: [
                                   Column(
                                     children: [
                                       Padding(padding: EdgeInsetsDirectional.all(4)),
-
                                       Container(
                                         margin: EdgeInsets.only(left: 8),
-                                        height: 20,
+                                        height: 24,
                                         width: 166,
                                         child: Text(
                                           i.name,
@@ -298,10 +345,10 @@ class CardPageState extends State<CardPage> {
 
 
                                                 },icon: Icon(
-                                                Icons.add_circle_outline_sharp,
+                                                Icons.shopping_basket,
                                                 size: 26.0,
                                               ),
-                                                color: Colors.red[500],
+                                                color: Colors.black45,
                                                 padding: EdgeInsets.all(2),
                                               ),
                                             )
