@@ -69,10 +69,6 @@ class CategoryPageState extends State<CategoryPage> {
                           ),
                         child: GestureDetector(
                           onTap: ()  {
-                            // for(var i in data[index].products)
-                            // for(var d in i['cover'])
-                              // print(d['url']);
-                            // print(data[index].products[0]['cover'][0]['url']);
                             Navigator.of(context).pushNamed('/category',
                                 arguments: data[index]
                             );

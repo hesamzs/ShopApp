@@ -340,8 +340,6 @@ class CardPageState extends State<CardPage> {
                                               width: 40,
                                               child: IconButton(
                                                 onPressed: () => {
-
-
                                                 },icon: Icon(
                                                 Icons.shopping_basket,
                                                 size: 26.0,
