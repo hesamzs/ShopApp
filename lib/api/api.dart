@@ -3,14 +3,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class GetShopData {
-
   var baseUrl = "https://raingate.ir";
   var token = "";
 
   Future<List<ProductFilter>> getProducts() async {
     var response = await http.get(Uri.parse("$baseUrl/api/products?page[number]=1&page[size]=31"));
     var json = jsonDecode(response.body);
-    List<ProductFilter> markets = [];
+    List<ProductFilter> products = [];
     for (var product in json['data']['products']) {
       if (product["price"] == null){
         product["price"] = "Call To Owner !";
@@ -18,52 +17,27 @@ class GetShopData {
       if (product["category_id"] == null){
         product["category_id"] = " ";
       }
-      var market = ProductFilter.fromJson((product));
-      markets.add(market);
+      var prdct = ProductFilter.fromJson((product));
+      products.add(prdct);
 
     }
-    return markets;
-  }
-
-  Future<List<Map<String,dynamic>>> getProduct(int ID) async {
-    var response = await http.get(Uri.parse("$baseUrl/api/products/$ID"));
-    var json = jsonDecode(response.body);
-    print(json['data']['product']["id"]);
-
-    // List<ProductFilter> markets = [];
-    // for (var product in json['data']['product']) {
-      // if (product["price"] == null){
-      //   product["price"] = "Call To Owner !";
-      // }
-      // if (product["category_id"] == null){
-      //   product["category_id"] = " ";
-      // }
-      // var market = ProductFilter.fromJson((product));
-      // markets.add(market);
-
-    // }
-    return [{"" : "s"}];
+    return products;
   }
 
   Future<List<CategoryFilter>> getCategory() async {
     var response = await http.get(Uri.parse("$baseUrl/api/products/categories?page[size]=30&page[number]=1&filter[status]=gte:1"));
     var json = jsonDecode(response.body);
-    // print(json['data']['product_categories']);
 
-    List<CategoryFilter> markets = [];
+    List<CategoryFilter> categories = [];
     for (var product in json['data']['product_categories']) {
-        // print(product);
         if (product['cover'].length == 0){
           break;
         }
         product['cover'] = product['cover'][0]['url'];
-        // for (var cover in product['cover'])
-        //   product['cover'] = cover['url'];
-          var market = CategoryFilter.fromJson((product));
-          markets.add(market);
+        var category = CategoryFilter.fromJson((product));
+        categories.add(category);
     }
-
-    return markets;
+    return categories;
   }
 
 
@@ -107,7 +81,6 @@ class ProductFilter {
   final int product_id;
   final String category_id;
 
-
   ProductFilter(this.name,this.price,this.description,this.cover,this.product_id,this.category_id);
 
   factory ProductFilter.fromJson(Map<String,dynamic> json){
@@ -136,7 +109,6 @@ class CategoryFilter {
   final List products;
   final String cover;
 
-
   CategoryFilter(this.id,this.name,this.products,this.cover);
 
   factory CategoryFilter.fromJson(Map<String,dynamic> json){
@@ -147,13 +119,4 @@ class CategoryFilter {
         json['cover'],
     );
   }
-  // Map<String, String> toMap() {
-  //   return {
-  //     "name": name
-  //   };
-  // }
-  //
-  // String toString() {
-  //   return "{name: $name}";
-  // }
 }

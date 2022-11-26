@@ -65,69 +65,80 @@ class CategoryPageState extends State<CategoryPage> {
                           height: 150,
                           margin: EdgeInsets.fromLTRB(20,0,20,8),
                           decoration: BoxDecoration(
-                              // color: Colors.red,
                               borderRadius: BorderRadius.circular(20)
                           ),
-                        child: Stack(
-                          children: [
-                            Positioned.fill(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.network(
-                                  data[index].cover,
-                                  fit: BoxFit.cover,
+                        child: GestureDetector(
+                          onTap: ()  {
+                            // for(var i in data[index].products)
+                            // for(var d in i['cover'])
+                              // print(d['url']);
+                            // print(data[index].products[0]['cover'][0]['url']);
+                            Navigator.of(context).pushNamed('/category',
+                                arguments: data[index]
+                            );
+
+                          },
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.network(
+                                    data[index].cover,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Column(
-                              children: [
-                                Expanded(
-                                    child: Container(
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
-                                        color: Colors.black12,
-                                      ),
-                                    )
-                                ),
-                                Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
-                                    color: Colors.black87,
+                              Column(
+                                children: [
+                                  Expanded(
+                                      child: Container(
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+                                          color: Colors.black12,
+                                        ),
+                                      )
                                   ),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: Container(
-                                            margin: EdgeInsets.all(8),
-                                            child: IconButton(
-                                              icon: Icon(Icons.arrow_back_ios_new,color: Colors.white,),
-                                              onPressed: () {  },
+                                  Container(
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                                      color: Colors.black87,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                            child: Container(
+                                              margin: EdgeInsets.all(8),
+                                              child: IconButton(
+                                                icon: Icon(Icons.arrow_back_ios_new,color: Colors.white,),
+                                                onPressed: () {  },
+                                              ),
+                                            )
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.all(8),
+                                          width: 250,
+                                          child: Text(
+                                            data[index].name,
+                                            textDirection: TextDirection.rtl,
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold
                                             ),
-                                          )
-                                      ),
-                                      Container(
-                                        margin: EdgeInsets.all(8),
-                                        width: 250,
-                                        child: Text(
-                                          data[index].name,
-                                          textDirection: TextDirection.rtl,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold
                                           ),
-                                        ),      
-                                      ),
-                                      Padding(padding: EdgeInsets.only(right: 12))
-                                    ],
+                                        ),
+                                        Padding(padding: EdgeInsets.only(right: 12))
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                                ],
+                              )
+                            ],
+                          ),
+                        )
                       );
                     }
                 )

@@ -4,6 +4,7 @@ import 'package:shopapp/pages/basket_page.dart';
 import 'package:shopapp/pages/category_page.dart';
 import 'package:shopapp/pages/product_page.dart';
 import 'package:shopapp/pages/profile_page.dart';
+import 'package:shopapp/pages/subcategory_page.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 void main() {
@@ -23,10 +24,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
       routes: {
-        '': (BuildContext context) => CardPage(),
-        '/category': (BuildContext context) => CategoryPage(),
-        '/basket': (BuildContext context) => BasketPage(),
-        '/profile': (BuildContext context) => ProfilePage(),
+        // '': (BuildContext context) => CardPage(),
+        '/category': (BuildContext context) => SubCategory(),
+        // '/basket': (BuildContext context) => BasketPage(),
+        // '/profile': (BuildContext context) => ProfilePage(),
         '/product': (BuildContext context) => ProductPage(),
 
       },

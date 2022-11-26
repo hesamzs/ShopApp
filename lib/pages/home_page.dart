@@ -14,7 +14,6 @@ class CardPageState extends State<CardPage> {
 
   bool _isLoading = true;
 
-  List loading = ["1", "1", "1", "1", "1", "1", "1"];
   List<ProductFilter> data = [];
   List<ProductFilter> all_data = [];
 
@@ -86,7 +85,6 @@ class CardPageState extends State<CardPage> {
                                     data = all_data;
                                   });
                                 }
-
                               },
                               decoration: InputDecoration(
                                 hintText: 'Search Product...',
@@ -117,7 +115,7 @@ class CardPageState extends State<CardPage> {
                 mainAxisSpacing: 8,
                 crossAxisCount: 2,
                 children: <Widget>[
-                  for(var i in loading)
+                  for(var i = 0 ; i < 10 ;i++)
                     Container(
                         decoration:
                         BoxDecoration(
