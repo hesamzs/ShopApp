@@ -29,14 +29,12 @@ class MyApp extends StatelessWidget {
         // '/basket': (BuildContext context) => BasketPage(),
         // '/profile': (BuildContext context) => ProfilePage(),
         '/product': (BuildContext context) => ProductPage(),
-
       },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-
   const MyHomePage({super.key, required this.title});
   final String title;
 
@@ -55,22 +53,19 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
         children: [
-
           screens[_page],
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(16),
-                  topLeft: Radius.circular(16)
-              ),
+                  topRight: Radius.circular(16), topLeft: Radius.circular(16)),
               boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
               color: Colors.black45,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
               child: GNav(
                 backgroundColor: Colors.transparent,
                 color: Colors.black54,
@@ -81,7 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTabChange: (index) {
                   setState(() {
                     _page = index;
-                  });;
+                  });
+                  ;
                 },
                 padding: EdgeInsets.all(16),
                 tabs: [

@@ -44,7 +44,7 @@ packages:
     source: hosted
     version: "1.0.5"
   curved_navigation_bar:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: curved_navigation_bar
       url: "https://pub.dartlang.org"
@@ -84,7 +84,7 @@ packages:
     source: hosted
     version: "2.0.1"
   flutter_localizations:
-    dependency: "direct dev"
+    dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -99,14 +99,14 @@ packages:
     source: sdk
     version: "0.0.0"
   google_nav_bar:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_nav_bar
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.6"
   http:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -162,7 +162,7 @@ packages:
     source: hosted
     version: "1.8.0"
   path:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: path
       url: "https://pub.dartlang.org"
@@ -211,7 +211,7 @@ packages:
     source: hosted
     version: "4.2.4"
   shared_preferences:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
@@ -279,12 +279,12 @@ packages:
     source: hosted
     version: "1.9.0"
   sqflite:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.2.1"
   sqflite_common:
     dependency: transitive
     description:
@@ -354,7 +354,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.2"
   xdg_directories:
     dependency: transitive
     description:
@@ -364,4 +364,4 @@ packages:
     version: "0.2.0+2"
 sdks:
   dart: ">=2.18.0 <3.0.0"
-  flutter: ">=3.0.0"
+  flutter: ">=3.3.0"

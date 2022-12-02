@@ -17,7 +17,6 @@ class SubCategoryState extends State<SubCategory> {
   Widget build(BuildContext context) {
     CategoryFilter data  = ModalRoute.of(context)?.settings.arguments as CategoryFilter;
 
-
     return Scaffold(
       appBar: AppBar(
         title: Text(data.name + " محصولات"),
@@ -47,7 +46,7 @@ class SubCategoryState extends State<SubCategory> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.network(
-                        product['cover'][0]['url'],
+                        product['cover'].length > 0 ? product['cover'][0]['url'] : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930',
                         fit: BoxFit.cover,
                       ),
                     ),
