@@ -44,7 +44,7 @@ class GetShopData {
 
   Future checkUser(String phone) async {
     var response = await http
-        .post(Uri.parse("$baseUrl/api/login"), body: {"username": phone});
+        .post(Uri.parse("$baseUrl/api/login"), body: {"username": phone.toString()});
     var json = jsonDecode(response.body);
     if (json['data']['active']) {
       return true;
@@ -53,16 +53,18 @@ class GetShopData {
     }
   }
 
-  Future login(String username, String password) async {
-    var response = await http.post(Uri.parse("$baseUrl/oauth/token"), body: {
-      "client_id": 2,
-      "client_secret": "dXytYoKuHIpg8s200SL48e2toF1I4dokop87ZtkO",
-      "grant_type": "password",
-      "username": username,
-      "password": password
+  Future login(String number,String pass) async {
+    var response = await http.post(Uri.parse("$baseUrl/oauth/token"),
+        body: {
+          "client_id": "2",
+          "client_secret": "dXytYoKuHIpg8s200SL48e2toF1I4dokop87ZtkO",
+          "grant_type": "password",
+          "username": number,
+          "password": pass
     });
     var json = jsonDecode(response.body);
-    token = json['access_token'];
+    print(json);
+    // token = json['access_token'];
   }
 
   Future getCart() async {

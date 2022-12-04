@@ -258,7 +258,6 @@ class CardPageState extends State<CardPage> {
                         ),
                         child: GestureDetector(
                           onTap: (){
-                            // print(i);
                             Navigator.of(context).pushNamed('/product',
                                 arguments: i
                             );
@@ -339,7 +338,10 @@ class CardPageState extends State<CardPage> {
                                               height: 40,
                                               width: 40,
                                               child: IconButton(
-                                                onPressed: () => {
+                                                onPressed: () {
+                                                  setState(() {
+                                                    Navigator.of(context).pushNamed('login');
+                                                  });
                                                 },icon: Icon(
                                                 Icons.shopping_basket,
                                                 size: 26.0,

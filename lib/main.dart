@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopapp/account/login.dart';
+import 'package:shopapp/account/register.dart';
 import 'package:shopapp/pages/home_page.dart';
 import 'package:shopapp/pages/basket_page.dart';
 import 'package:shopapp/pages/category_page.dart';
@@ -16,27 +18,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Shop App Beta',
       theme: ThemeData(
         primarySwatch: Colors.grey,
         scaffoldBackgroundColor: Colors.white.withOpacity(0.7),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
       routes: {
         // '': (BuildContext context) => CardPage(),
-        '/category': (BuildContext context) => SubCategory(),
         // '/basket': (BuildContext context) => BasketPage(),
         // '/profile': (BuildContext context) => ProfilePage(),
+        '/category': (BuildContext context) => SubCategory(),
         '/product': (BuildContext context) => ProductPage(),
+        'login': (context) => const MyLogin(),
+        'register': (context) => const MyRegister(),
       },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
