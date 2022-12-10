@@ -17,6 +17,7 @@ class CardPageState extends State<CardPage> {
   List<ProductFilter> data = [];
   List<ProductFilter> all_data = [];
 
+  @override
   void initState() {
     super.initState();
     var ShopApiData = GetShopData();
@@ -48,7 +49,7 @@ class CardPageState extends State<CardPage> {
     return Expanded(
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.only(top: 24)),
+            const Padding(padding: EdgeInsets.only(top: 24)),
             Container(
               color: Colors.black26,
               height: 55,
